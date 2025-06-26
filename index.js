@@ -1,3 +1,7 @@
+const headerContainer = document.querySelector('#header')
+const listContainer = document.querySelector('#list')
+const submitBtn = document.querySelector('#submit')
+
 const questions = [
 	{
 		question: "Какой язык работает в браузере?",
@@ -30,3 +34,42 @@ const questions = [
 		correct: 2,
 	},
 ];
+let score = 0
+let questionIndex = 0
+
+function clearPage () {
+	headerContainer.innerHTML = ''
+  listContainer.innerHTML = ''
+}
+clearPage()
+
+function showQuestion () {
+	const headerTemplate = `<h2 class="title">%titleQuestion%</h2>`
+	const titleHtml = headerTemplate.replace('%titleQuestion%', questions[questionIndex]['question'])
+	headerContainer.innerHTML = titleHtml
+	
+	for ([index, answerItem] of questions[questionIndex]['answers'].entries()) {
+		const questionTemplate = 
+		`<li>
+				<label>
+					<input value="${index + 1}" type="radio" class="answer" name="answer" />
+					<span>%answer%</span>
+				</label>
+		</li>`
+		const answerHtml = questionTemplate.replace('%answer%', answerItem)
+		listContainer.innerHTML += answerHtml
+	}
+	
+}
+showQuestion()
+
+function checkAnswer () {
+	const checkedRadio = listContainer.querySelector('input[type="radio"]:checked')
+	if (!checkedRadio) {
+		submitBtn.blur()
+		return
+	}
+	
+}
+
+submitBtn.addEventListener('click', checkAnswer)
