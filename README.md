@@ -1,2 +1,2 @@
 # Игра: Quiz (квиз, викторина) на JavaScript
-## Ссылка: 
+## Ссылка: https://ulzirok.github.io/quiz-game/
